@@ -1,24 +1,22 @@
-version: "3.3"
-
 services:
 
   projectsend:
-    image: linuxserver/projectsend
+    image: lscr.io/linuxserver/projectsend:latest
     container_name: projectsend
     environment:
-      - PUID=998
-      - PGID=100
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/Madrid
       - MAX_UPLOAD=5000
     volumes:
-      - ./ps/config:/config 
-      - ./ps/sata:/data 
+      - ./config:/config
+      - ./data:/data 
     ports:
       - "8200:80"
     restart: unless-stopped
 
   db:
-    image: mariadb
+    image: mariadb:latest
     container_name: mariadb-ps
     environment:
       MYSQL_ROOT_PASSWORD: projectsend
@@ -26,5 +24,5 @@ services:
       MYSQL_USER: projectsend
       MYSQL_PASSWORD: projectsend
     volumes:
-      - ./mysql:/var/lib/mysql 
-    restart: unless-stopped
+      - ./mysql:/var/lib/mysql
+    restart: unless-stopped 
