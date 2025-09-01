@@ -7,7 +7,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Madrid
-      - MAX_UPLOAD=5000
     volumes:
       - ./config:/config
       - ./data:/data 
@@ -26,3 +25,4 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
     restart: unless-stopped 
+
